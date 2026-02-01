@@ -1,14 +1,13 @@
 <div class="bitcoin-container">
   <div class="header">
-    <h1>💰 Bitcoin Price Index</h1>
-    <p class="subtitle">Real-time cryptocurrency prices from Coindesk API</p>
-    <p class="exercise-tag">Exercise 28 - Best Practices Applied ✅</p>
+    <h1>💰 Cryptocurrency Prices</h1>
+    <p class="subtitle">Real-time data from Alternative.me API</p>
   </div>
 
   <!-- Loading State -->
   <div *ngIf="isLoading" class="loading">
     <div class="spinner"></div>
-    <p>Loading Bitcoin data from Coindesk...</p>
+    <p>Loading cryptocurrency data...</p>
   </div>
 
   <!-- Error State -->
@@ -18,79 +17,82 @@
   </div>
 
   <!-- Data State -->
-  <div *ngIf="bitcoinData && !isLoading" class="content">
-    <div class="info-card">
-      <div class="chart-name">
-        <h2>{{ bitcoinData.chartName }}</h2>
+  <div *ngIf="cryptoData.length > 0 && !isLoading" class="content">
+    
+    <!-- Bitcoin Featured Card -->
+    <div *ngIf="bitcoinData" class="featured-card">
+      <div class="featured-header">
+        <h2>{{ bitcoinData.name }} ({{ bitcoinData.symbol }})</h2>
+        <span class="rank">Rank #{{ bitcoinData.rank }}</span>
       </div>
-      <div class="last-updated">
-        <span class="label">Last Updated:</span>
-        <span class="time">{{ bitcoinData.time.updated }}</span>
+      <div class="featured-price">
+        {{ formatPrice(bitcoinData.price_usd) }}
       </div>
-    </div>
-
-    <div class="price-cards">
-      <div class="price-card usd">
-        <div class="currency-header">
-          <span class="currency-symbol">{{ bitcoinData.bpi.USD.symbol }}</span>
-          <span class="currency-code">{{ bitcoinData.bpi.USD.code }}</span>
+      <div class="featured-stats">
+        <div class="stat">
+          <span class="label">Market Cap:</span>
+          <span class="value">{{ formatPrice(bitcoinData.market_cap_usd) }}</span>
         </div>
-        <div class="price-amount">
-          {{ bitcoinData.bpi.USD.rate }}
+        <div class="stat">
+          <span class="label">24h Volume:</span>
+          <span class="value">{{ formatPrice(bitcoinData['24h_volume_usd']) }}</span>
         </div>
-        <div class="currency-description">
-          {{ bitcoinData.bpi.USD.description }}
+        <div class="stat">
+          <span class="label">1h Change:</span>
+          <span [class]="getChangeClass(bitcoinData.percent_change_1h)">
+            {{ bitcoinData.percent_change_1h }}%
+          </span>
         </div>
-      </div>
-
-      <div class="price-card gbp">
-        <div class="currency-header">
-          <span class="currency-symbol">{{ bitcoinData.bpi.GBP.symbol }}</span>
-          <span class="currency-code">{{ bitcoinData.bpi.GBP.code }}</span>
+        <div class="stat">
+          <span class="label">24h Change:</span>
+          <span [class]="getChangeClass(bitcoinData.percent_change_24h)">
+            {{ bitcoinData.percent_change_24h }}%
+          </span>
         </div>
-        <div class="price-amount">
-          {{ bitcoinData.bpi.GBP.rate }}
-        </div>
-        <div class="currency-description">
-          {{ bitcoinData.bpi.GBP.description }}
-        </div>
-      </div>
-
-      <div class="price-card eur">
-        <div class="currency-header">
-          <span class="currency-symbol">{{ bitcoinData.bpi.EUR.symbol }}</span>
-          <span class="currency-code">{{ bitcoinData.bpi.EUR.code }}</span>
-        </div>
-        <div class="price-amount">
-          {{ bitcoinData.bpi.EUR.rate }}
-        </div>
-        <div class="currency-description">
-          {{ bitcoinData.bpi.EUR.description }}
+        <div class="stat">
+          <span class="label">7d Change:</span>
+          <span [class]="getChangeClass(bitcoinData.percent_change_7d)">
+            {{ bitcoinData.percent_change_7d }}%
+          </span>
         </div>
       </div>
     </div>
 
-    <div class="disclaimer">
-      <p>{{ bitcoinData.disclaimer }}</p>
-    </div>
+    <!-- All Cryptocurrencies Table -->
+    <h3>Top Cryptocurrencies</h3>
+    <table class="crypto-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Symbol</th>
+          <th>Price (USD)</th>
+          <th>Market Cap</th>
+          <th>24h Change</th>
+          <th>7d Change</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let coin of cryptoData; let i = index">
+          <td>{{ coin.rank }}</td>
+          <td>{{ coin.name }}</td>
+          <td>{{ coin.symbol }}</td>
+          <td>{{ formatPrice(coin.price_usd) }}</td>
+          <td>{{ formatPrice(coin.market_cap_usd) }}</td>
+          <td [class]="getChangeClass(coin.percent_change_24h)">
+            {{ coin.percent_change_24h | number:'1.2-2' }}%
+          </td>
+          <td [class]="getChangeClass(coin.percent_change_7d)">
+            {{ coin.percent_change_7d | number:'1.2-2' }}%
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <div class="refresh-section">
       <button class="refresh-btn" (click)="loadData()" [disabled]="isLoading">
         🔄 {{ isLoading ? 'Loading...' : 'Refresh Data' }}
       </button>
-    </div>
-
-    <!-- Best Practices Info -->
-    <div class="best-practices-info">
-      <h3>✅ Best Practices Applied:</h3>
-      <ul>
-        <li>✅ Memory leak protection (takeUntil pattern)</li>
-        <li>✅ Proper type safety (no 'any' types)</li>
-        <li>✅ Loading state management</li>
-        <li>✅ Error handling with retry</li>
-        <li>✅ OnDestroy lifecycle cleanup</li>
-        <li>✅ Direct Coindesk API call</li>
-      </ul>
     </div>
   </div>
 </div>

@@ -7,17 +7,13 @@
         "logLevel":"debug"
     },
     {
-        "context": ["/v1/ticker/"],
+        "context": ["/api/crypto"],
         "target": "https://api.alternative.me",
         "secure": true,
         "changeOrigin": true,
-        "logLevel": "debug"
-    },
-    {
-        "context": ["/v1/bpi"],
-        "target": "https://api.coindesk.com",
-        "secure": true,
-        "changeOrigin": true,
-        "logLevel": "debug"
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/api/crypto": "/v1/ticker"
+        }
     }
 ]

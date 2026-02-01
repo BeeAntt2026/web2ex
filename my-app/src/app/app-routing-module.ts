@@ -12,6 +12,7 @@ import { FakeProduct } from './fake-product/fake-product';
 import { FakeProduct2 } from './fake-product-2/fake-product-2';
 import { Bitcoin } from './bitcoin/bitcoin';
 import { Books } from './books/books';
+import { Ex22 } from './ex22/ex22';
 const routes: Routes = [
   {path:'ex26',component:FakeProduct},
   { path: 'ex13', component: Ex13 },
@@ -27,7 +28,9 @@ const routes: Routes = [
   { path: 'bitcoin', component: Bitcoin },
   { path: 'ex28', component: Bitcoin },  // Exercise 28: Bitcoin Price Index
   { path: 'books', component: Books },
-  { path: 'ex39', component: Books }
+  { path: 'ex39', component: Books },
+  { path: 'ex22', component: Ex22 }
+
 ];
 
 @NgModule({

@@ -2,7 +2,7 @@ import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Ex13 } from './ex13/ex13';
 import { MenuBar } from './menu-bar/menu-bar';
@@ -17,6 +17,7 @@ import { FakeProduct } from './fake-product/fake-product';
 import { FakeProduct2 } from './fake-product-2/fake-product-2';
 import { Bitcoin } from './bitcoin/bitcoin';
 import { Books } from './books/books';
+import { Ex22 } from './ex22/ex22';
 @NgModule({
   declarations: [
     App,
@@ -32,12 +33,14 @@ import { Books } from './books/books';
     FakeProduct,
     FakeProduct2,
     Bitcoin,
-    Books
+    Books,
+    Ex22
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule
   ],
   providers: [

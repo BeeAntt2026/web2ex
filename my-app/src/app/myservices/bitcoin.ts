@@ -1,55 +1,51 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { IBitcoinPrice } from '../myclasses/bitcoinprice';
+import { ICryptoCurrency } from '../myclasses/bitcoinprice';
 import { catchError, map, retry, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BitcoinService {
-  // Alternative.me API endpoint (proxy)
-  private _alternativeMeUrl: string = '/crypto';
-  
-  // Coindesk API endpoint (proxy - Exercise 28)
-  private _coindeskUrl: string = '/v1/bpi/currentprice.json';
+  // Direct API call - alternative.me has CORS enabled
+  private _url: string = 'https://api.alternative.me/v1/ticker/';
   
   constructor(private _http: HttpClient) { }
   
   /**
-   * Exercise 28: Get Bitcoin Price Index from Coindesk API
-   * Direct API call without proxy
+   * Get cryptocurrency data from Alternative.me API
+   * Returns array of cryptocurrencies
    */
-  getCoindeskBitcoinPrice(): Observable<IBitcoinPrice> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const requestOptions: Object = {
-      headers: headers,
-      responseType: 'json'
-    };
-    return this._http.get<IBitcoinPrice>(this._coindeskUrl, requestOptions).pipe(
-      retry(3),
+  getCryptoData(): Observable<ICryptoCurrency[]> {
+    console.log('📡 Calling API:', this._url);
+    return this._http.get<ICryptoCurrency[]>(this._url).pipe(
+      map(res => {
+        console.log('📥 Response received:', res);
+        // API returns an array directly
+        if (Array.isArray(res)) {
+          return res;
+        }
+        // If it's an object, convert to array
+        return Object.values(res) as ICryptoCurrency[];
+      }),
+      retry(2),
       catchError(this.handleError)
     );
   }
-  
+
   /**
-   * Legacy method: Get Bitcoin data from Alternative.me API (via proxy)
+   * Get Bitcoin data only
    */
-  getBitcoinPriceData(): Observable<IBitcoinPrice> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    const requestOptions: Object = {
-      headers: headers,
-      responseType: 'json'
-    };
-    return this._http.get<IBitcoinPrice>(this._alternativeMeUrl, requestOptions).pipe(
-      retry(3),
-      catchError(this.handleError)
+  getBitcoinData(): Observable<ICryptoCurrency | undefined> {
+    return this.getCryptoData().pipe(
+      map(data => data.find(coin => coin.id === 'bitcoin'))
     );
   }
   
   handleError(error: HttpErrorResponse): Observable<never> {
-    console.error('Bitcoin API Error:', error);
-    let errorMessage = 'Failed to load Bitcoin data';
+    console.error('Crypto API Error:', error);
+    let errorMessage = 'Failed to load cryptocurrency data';
     
     if (error.error instanceof ErrorEvent) {
       // Client-side error

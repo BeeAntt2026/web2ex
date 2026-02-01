@@ -1,0 +1,53 @@
+<p>ex22 works!</p>
+<form [formGroup]="regForm">
+    <h3 class="text-center">{{('Đăng ký khóa học' | uppercase)}}</h3>
+
+    <!-- Name Field -->
+    <div class="mb-3">
+        <label for="name">Tên:</label>
+        <input type="text" id="name" class="form-control" placeholder="Nhập tên" formControlName="name"
+            [class.is-invalid]="regForm.controls['name'].invalid && regForm.controls['name'].touched">
+        <div *ngIf="regForm.controls['name'].invalid && regForm.controls['name'].touched">
+            <small class="text-danger" *ngIf="regForm.controls['name'].errors?.['required']">
+                Tên không được để trống
+            </small>
+            <small class="text-danger" *ngIf="regForm.controls['name'].errors?.['minlength']">
+                Tên phải tối ít nhất 3 ký tự
+            </small>
+            <small class="text-danger" *ngIf="regForm.controls['name'].errors?.['nameNotMatch']">
+                Tên không được chứa ký tự đặc biệt
+            </small>
+        </div>
+    </div>
+
+    <!-- Email Field -->
+    <div class="mb-3">
+        <label for="email">Email:</label>
+        <input type="text" id="email" class="form-control" placeholder="Nhập email" formControlName="email">
+    </div>
+
+    <!-- Password Field -->
+    <div class="mb-3">
+        <label for="password">Mật khẩu:</label>
+        <input type="password" id="password" class="form-control" placeholder="Nhập mật khẩu"
+            formControlName="password">
+    </div>
+
+    <!-- Confirm Password Field -->
+    <div class="mb-3">
+        <label for="confirmPass">Nhập lại mật khẩu:</label>
+        <input type="password" id="retype_password" class="form-control" placeholder="Nhập lại mật khẩu"
+            formControlName="confirmPass" [class.is-invalid]="regForm.errors?.['misMatch']">
+        <small class="text-danger" *ngIf="regForm.errors?.['misMatch']">
+            Mật khẩu không trùng khớp
+        </small>
+    </div>
+
+    <!-- Buttons -->
+    <div class="mb-3 text-end">
+        <button type="submit" class="btn btn-primary" (click)="onSubmit()">Đăng ký</button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="setDefaultValues()">
+            Default values
+        </button>
+    </div>
+</form>
