@@ -3,17 +3,14 @@
         "context": ["/products"],
         "target": "https://fakestoreapi.com",
         "secure": true,
-        "changeOrigin":true,
-        "logLevel":"debug"
+        "changeOrigin": true,
+        "logLevel": "debug"
     },
     {
-        "context": ["/api/crypto"],
+        "context": ["/v1/ticker"],
         "target": "https://api.alternative.me",
         "secure": true,
         "changeOrigin": true,
-        "logLevel": "debug",
-        "pathRewrite": {
-            "^/api/crypto": "/v1/ticker"
-        }
+        "logLevel": "debug"
     }
 ]

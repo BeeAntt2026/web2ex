@@ -4,20 +4,14 @@
     <p class="subtitle">Real-time data from Alternative.me API</p>
   </div>
 
-  <!-- Loading State -->
-  <div *ngIf="isLoading" class="loading">
-    <div class="spinner"></div>
-    <p>Loading cryptocurrency data...</p>
-  </div>
-
   <!-- Error State -->
-  <div *ngIf="errMessage && !isLoading" class="error-message">
+  <div *ngIf="errMessage" class="error-message">
     <p>⚠️ {{ errMessage }}</p>
     <button class="retry-btn" (click)="loadData()">🔄 Retry</button>
   </div>
 
   <!-- Data State -->
-  <div *ngIf="cryptoData.length > 0 && !isLoading" class="content">
+  <div *ngIf="cryptoData.length > 0" class="content">
     
     <!-- Bitcoin Featured Card -->
     <div *ngIf="bitcoinData" class="featured-card">
@@ -90,8 +84,8 @@
     </table>
 
     <div class="refresh-section">
-      <button class="refresh-btn" (click)="loadData()" [disabled]="isLoading">
-        🔄 {{ isLoading ? 'Loading...' : 'Refresh Data' }}
+      <button class="refresh-btn" (click)="loadData()">
+        🔄 Refresh Data
       </button>
     </div>
   </div>
