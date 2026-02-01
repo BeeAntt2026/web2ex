@@ -1,0 +1,23 @@
+[
+    {
+        "context": ["/products"],
+        "target": "https://fakestoreapi.com",
+        "secure": true,
+        "changeOrigin":true,
+        "logLevel":"debug"
+    },
+    {
+        "context": ["/v1/ticker/"],
+        "target": "https://api.alternative.me",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    },
+    {
+        "context": ["/v1/bpi"],
+        "target": "https://api.coindesk.com",
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "debug"
+    }
+]

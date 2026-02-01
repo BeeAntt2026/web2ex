@@ -1,0 +1,21 @@
+<p>books works!</p>
+{{errMessage}}
+<table border="1">
+    <tr>
+        <td>BookId</td>
+        <td>BookName</td>
+        <td>Price</td>
+        <td>Image</td>
+    </tr>
+        <tbody>
+            <tr *ngFor="let book of books">
+                <td>{{book.BookId}}</td>
+                <td>{{book.BookName}}</td>
+                <td>{{book.Price}} </td>
+                <td>
+                <img src="http://localhost:3000/images/{{book.Image}}" width="50px"
+                height="50px">
+                </td>
+            </tr>
+        </tbody>
+</table>

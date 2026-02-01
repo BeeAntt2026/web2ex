@@ -1,0 +1,96 @@
+<div class="bitcoin-container">
+  <div class="header">
+    <h1>💰 Bitcoin Price Index</h1>
+    <p class="subtitle">Real-time cryptocurrency prices from Coindesk API</p>
+    <p class="exercise-tag">Exercise 28 - Best Practices Applied ✅</p>
+  </div>
+
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading">
+    <div class="spinner"></div>
+    <p>Loading Bitcoin data from Coindesk...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="errMessage && !isLoading" class="error-message">
+    <p>⚠️ {{ errMessage }}</p>
+    <button class="retry-btn" (click)="loadData()">🔄 Retry</button>
+  </div>
+
+  <!-- Data State -->
+  <div *ngIf="bitcoinData && !isLoading" class="content">
+    <div class="info-card">
+      <div class="chart-name">
+        <h2>{{ bitcoinData.chartName }}</h2>
+      </div>
+      <div class="last-updated">
+        <span class="label">Last Updated:</span>
+        <span class="time">{{ bitcoinData.time.updated }}</span>
+      </div>
+    </div>
+
+    <div class="price-cards">
+      <div class="price-card usd">
+        <div class="currency-header">
+          <span class="currency-symbol">{{ bitcoinData.bpi.USD.symbol }}</span>
+          <span class="currency-code">{{ bitcoinData.bpi.USD.code }}</span>
+        </div>
+        <div class="price-amount">
+          {{ bitcoinData.bpi.USD.rate }}
+        </div>
+        <div class="currency-description">
+          {{ bitcoinData.bpi.USD.description }}
+        </div>
+      </div>
+
+      <div class="price-card gbp">
+        <div class="currency-header">
+          <span class="currency-symbol">{{ bitcoinData.bpi.GBP.symbol }}</span>
+          <span class="currency-code">{{ bitcoinData.bpi.GBP.code }}</span>
+        </div>
+        <div class="price-amount">
+          {{ bitcoinData.bpi.GBP.rate }}
+        </div>
+        <div class="currency-description">
+          {{ bitcoinData.bpi.GBP.description }}
+        </div>
+      </div>
+
+      <div class="price-card eur">
+        <div class="currency-header">
+          <span class="currency-symbol">{{ bitcoinData.bpi.EUR.symbol }}</span>
+          <span class="currency-code">{{ bitcoinData.bpi.EUR.code }}</span>
+        </div>
+        <div class="price-amount">
+          {{ bitcoinData.bpi.EUR.rate }}
+        </div>
+        <div class="currency-description">
+          {{ bitcoinData.bpi.EUR.description }}
+        </div>
+      </div>
+    </div>
+
+    <div class="disclaimer">
+      <p>{{ bitcoinData.disclaimer }}</p>
+    </div>
+
+    <div class="refresh-section">
+      <button class="refresh-btn" (click)="loadData()" [disabled]="isLoading">
+        🔄 {{ isLoading ? 'Loading...' : 'Refresh Data' }}
+      </button>
+    </div>
+
+    <!-- Best Practices Info -->
+    <div class="best-practices-info">
+      <h3>✅ Best Practices Applied:</h3>
+      <ul>
+        <li>✅ Memory leak protection (takeUntil pattern)</li>
+        <li>✅ Proper type safety (no 'any' types)</li>
+        <li>✅ Loading state management</li>
+        <li>✅ Error handling with retry</li>
+        <li>✅ OnDestroy lifecycle cleanup</li>
+        <li>✅ Direct Coindesk API call</li>
+      </ul>
+    </div>
+  </div>
+</div>

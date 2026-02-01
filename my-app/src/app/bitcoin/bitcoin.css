@@ -1,0 +1,357 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.bitcoin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+}
+
+.header {
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+  padding: 30px 0;
+}
+
+.header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.exercise-tag {
+  font-size: 1rem;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  display: inline-block;
+  font-weight: 500;
+}
+
+.loading {
+  text-align: center;
+  padding: 60px 20px;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.spinner {
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  border-top: 4px solid white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+  margin: 0 auto 20px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loading p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.error-message {
+  background-color: #ff6b6b;
+  color: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.error-message p {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.retry-btn {
+  background: white;
+  color: #ff6b6b;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.retry-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.content {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.chart-name h2 {
+  color: #667eea;
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
+
+.last-updated {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1rem;
+  color: #666;
+}
+
+.label {
+  font-weight: bold;
+  color: #333;
+}
+
+.time {
+  color: #667eea;
+  font-weight: 500;
+}
+
+.price-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.price-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-top: 5px solid;
+}
+
+.price-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.price-card.usd {
+  border-top-color: #4CAF50;
+}
+
+.price-card.gbp {
+  border-top-color: #2196F3;
+}
+
+.price-card.eur {
+  border-top-color: #FF9800;
+}
+
+.currency-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.currency-symbol {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.usd .currency-symbol {
+  color: #4CAF50;
+}
+
+.gbp .currency-symbol {
+  color: #2196F3;
+}
+
+.eur .currency-symbol {
+  color: #FF9800;
+}
+
+.currency-code {
+  background: #f5f5f5;
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.price-amount {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.currency-description {
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.disclaimer {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.disclaimer p {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.refresh-section {
+  text-align: center;
+}
+
+.refresh-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.refresh-btn:hover:not(:disabled) {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.refresh-btn:active:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.refresh-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Best Practices Info Section */
+.best-practices-info {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 25px;
+  border-radius: 15px;
+  margin-top: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.best-practices-info h3 {
+  color: #667eea;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.best-practices-info ul {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.best-practices-info li {
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #333;
+  border-left: 4px solid #667eea;
+  transition: transform 0.2s ease;
+}
+
+.best-practices-info li:hover {
+  transform: translateX(5px);
+  background: #e9ecef;
+}
+
+.loading {
+  text-align: center;
+  padding: 50px;
+  color: white;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  border: 6px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading p {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .price-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .price-amount {
+    font-size: 1.5rem;
+  }
+}

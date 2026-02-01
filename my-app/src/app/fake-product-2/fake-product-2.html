@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="header">Product List</div>
+    
+    <div class="product-grid">
+        <div class="product-card" *ngFor="let p of data">
+            <div class="product-image-wrapper">
+                <span class="discount-badge">-25%</span>
+                <img [src]="p.image" [alt]="p.title" class="product-image">
+            </div>
+            <div class="product-title">{{p.title}}</div>
+            <div class="product-price">${{p.price}}</div>
+            <div class="product-rating">
+                <span class="rating-value">{{p.rating.rate}}</span>
+                <span>Count: {{p.rating.count}}</span>
+            </div>
+            <button class="buy-button">Buy Now</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+[
+    {
+        "CustomerTypeId": 1,
+        "CustomterTypeName": "VIP",
+        "Customers": [
+            {
+                "Id": "Cus123",
+                "Name": "Obama",
+                "Email": "obama@gmail.com",
+                "Age": 67,
+                "Image": "https://cdn.britannica.com/89/164789-050-D6B5E2C7/Barack-Obama-2012.jpg"
+            },
+            {
+                "Id": "Cus456",
+                "Name": "Kim jong Un",
+                "Email": "unun@gmail.com",
+                "Age": 38,
+                "Image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWpb1omyvNJLm7J_AYCPraC3uUOKhPPmlwEw&s"
+            },
+            {
+                "Id": "Cus789",
+                "Name": "Putin",
+                "Email": "putin@gmail.com",
+                "Age": 77,
+                "Image": "https://upload.wikimedia.org/wikipedia/commons/f/f3/%D0%92%D0%BB%D0%B0%D0%B4%D0%B8%D0%BC%D0%B8%D1%80_%D0%9F%D1%83%D1%82%D0%B8%D0%BD_%2808-03-2024%29_%28cropped%29.jpg"
+            }
+        ]
+    },
+    {
+        "CustomerTypeId": 2,
+        "CustomterTypeName": "Normal",
+        "Customers": [
+            {
+                "Id": "Cus000",
+                "Name": "Hồ Cẩm Đào",
+                "Email": "hodao@gmail.com",
+                "Age": 16,
+                "Image": "https://media.baoquangninh.vn/dataimages/201208/original/images643584_a.jpg"
+            },
+            {
+                "Id": "Cus111",
+                "Name": "Tap Can Binh",
+                "Email": "binhbinh@gmail.com",
+                "Age": 67,
+                "Image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Xi_Jinping_in_Beijing_on_May_13%2C_2025_%28cropped%29.jpg/250px-Xi_Jinping_in_Beijing_on_May_13%2C_2025_%28cropped%29.jpg"
+            }
+        ]
+    }
+]
