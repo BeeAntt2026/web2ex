@@ -1,0 +1,15 @@
+/* Highlight row khi hover */
+tbody tr:hover {
+    background-color: yellow;
+    cursor: pointer;
+}
+
+/* Style cho table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td {
+    padding: 8px;
+}

@@ -1,0 +1,25 @@
+<p>book-detail works!</p>
+<p>{{errMessage}}</p>
+<a routerLink="/ex39">Back to Book List</a>
+<br><br>
+Book Id: <input type="text" #bookId> <button
+(click)="searchBook(bookId.value)">Search</button>
+<table>
+    <tr>
+        <td>Book Id:</td>
+        <td>{{book.BookId}}</td>
+    </tr>
+    <tr>
+        <td>Book Name:</td>
+        <td>{{book.BookName}}</td>
+    </tr>
+    <tr>
+        <td>Price:</td>
+        <td>{{book.Price}} </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+        <img src="http://localhost:3000/images/{{book.Image}}">
+    </td>
+    </tr>
+</table>

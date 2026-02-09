@@ -11,6 +11,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const cors = require("cors")
 app.use(cors()) 
+const bodyParser=require("body-parser")
+app.use(bodyParser.json())
 //tạo default api (home)
 //req là viết tắt của request nhận thông tin từ client
 //res là viết tắt của response trả về thông tin cho client
@@ -50,3 +52,49 @@ let database=[
 app.get("/books",(req,res)=>{
 res.send(database)
 })
+app.get("/books/:id",cors(),(req,res)=>{
+id=req.params["id"]
+let p=database.find(x=>x.BookId==id)
+res.send(p)
+})
+app.post("/books",cors(),(req,res)=>{
+//put json book into database
+database.push(req.body);
+//send message to client(send all database to client)
+res.send(database)
+})
+
+// Upload file configuration
+const fileUpload = require('express-fileupload');
+app.use(
+  fileUpload({
+    limits: { fileSize: 10000000 },
+    abortOnLimit: true,
+  })
+);
+
+// Upload endpoint
+app.post('/upload', cors(), (req, res) => {
+  if (!req.files || !req.files.image) {
+    return res.status(400).send({ error: 'No image uploaded' });
+  }
+  const { image } = req.files;
+  const uploadPath = __dirname + '/public/images/' + image.name;
+  
+  image.mv(uploadPath, (err) => {
+    if (err) {
+      return res.status(500).send({ error: err.message });
+    }
+    res.send({ 
+      success: true, 
+      fileName: image.name,
+      filePath: 'images/' + image.name 
+    });
+  });
+});
+
+// Get uploaded image
+app.get('/image/:id', cors(), (req, res) => {
+  const id = req.params['id'];
+  res.sendFile(__dirname + '/public/images/' + id);
+});

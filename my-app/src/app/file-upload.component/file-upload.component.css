@@ -1,0 +1,90 @@
+.book-form {
+  margin: 20px 0;
+}
+
+.book-form div {
+  margin: 10px 0;
+}
+
+.book-form label {
+  display: inline-block;
+  width: 100px;
+}
+
+.book-form input {
+  padding: 8px;
+  width: 250px;
+}
+
+.file-upload-section {
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px dashed #ccc;
+  border-radius: 5px;
+}
+
+.file-input {
+  display: none;
+}
+
+.upload-btn {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.upload-btn:hover {
+  background-color: #45a049;
+}
+
+.add-book-btn {
+  padding: 12px 30px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-book-btn:hover {
+  background-color: #1976D2;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.progress-bar div {
+  height: 20px;
+  background-color: #4CAF50;
+  border-radius: 5px;
+  text-align: center;
+  color: white;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 10px;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: yellow;
+}

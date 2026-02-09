@@ -8,7 +8,7 @@
         <td>Image</td>
     </tr>
         <tbody>
-            <tr *ngFor="let book of books">
+            <tr *ngFor="let book of books" (click)="viewBookDetail(book.BookId)">
                 <td>{{book.BookId}}</td>
                 <td>{{book.BookName}}</td>
                 <td>{{book.Price}} </td>

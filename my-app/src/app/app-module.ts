@@ -18,6 +18,8 @@ import { FakeProduct2 } from './fake-product-2/fake-product-2';
 import { Bitcoin } from './bitcoin/bitcoin';
 import { Books } from './books/books';
 import { Ex22 } from './ex22/ex22';
+import { BookDetailComponent } from './book-detail.component/book-detail.component';
+import { FileUploadComponent } from './file-upload.component/file-upload.component';
 @NgModule({
   declarations: [
     App,
@@ -34,7 +36,9 @@ import { Ex22 } from './ex22/ex22';
     FakeProduct2,
     Bitcoin,
     Books,
-    Ex22
+    Ex22,
+    BookDetailComponent,
+    FileUploadComponent
   ],
   imports: [
     BrowserModule,
