@@ -1,6 +1,11 @@
-export interface IBook{
-BookId:string,
-BookName:string,
-Price:number,
-Image:string
+export interface IBook {
+  BookId: string;
+  Tensach: string;
+  Giaban: number;
+  Mota: string;
+  Anhbia: string;
+  Ngaycapnhat: string;
+  Soluongton: number;
+  MaCD: number;
+  MaNXB: number;
 }

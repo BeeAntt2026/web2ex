@@ -1,0 +1,58 @@
+<h2>{{ isEditMode ? 'CHỈNH SỬA SÁCH' : 'THÊM SÁCH MỚI' }}</h2>
+
+<div class="form-container">
+  <div class="form-group">
+    <label>Mã sách:</label>
+    <input type="text" [(ngModel)]="book.BookId" [disabled]="isEditMode" placeholder="Nhập mã sách">
+  </div>
+  
+  <div class="form-group">
+    <label>Tên sách:</label>
+    <input type="text" [(ngModel)]="book.Tensach" placeholder="Nhập tên sách">
+  </div>
+  
+  <div class="form-group">
+    <label>Giá bán:</label>
+    <input type="number" [(ngModel)]="book.Giaban" placeholder="Nhập giá bán">
+  </div>
+  
+  <div class="form-group">
+    <label>Mô tả:</label>
+    <textarea [(ngModel)]="book.Mota" placeholder="Nhập mô tả sách" rows="4"></textarea>
+  </div>
+  
+  <div class="form-group">
+    <label>Số lượng tồn:</label>
+    <input type="number" [(ngModel)]="book.Soluongton" placeholder="Nhập số lượng">
+  </div>
+  
+  <div class="form-group">
+    <label>Mã CD:</label>
+    <input type="number" [(ngModel)]="book.MaCD" placeholder="Nhập mã CD">
+  </div>
+  
+  <div class="form-group">
+    <label>Mã NXB:</label>
+    <input type="number" [(ngModel)]="book.MaNXB" placeholder="Nhập mã NXB">
+  </div>
+
+  <!-- File Upload for Image -->
+  <div class="form-group">
+    <label>Ảnh bìa:</label>
+    <input type="file" accept="image/*" (change)="onFileSelected($event)">
+    
+    <!-- Current Image Preview -->
+    <div *ngIf="book.Anhbia" class="image-preview">
+      <p>Ảnh hiện tại: {{book.Anhbia}}</p>
+      <img [src]="getImageUrl(book.Anhbia)" width="100" height="100">
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="button-group">
+    <button class="btn-primary" (click)="onSubmit()">
+      {{ isEditMode ? 'Cập nhật' : 'Thêm sách' }}
+    </button>
+    <button class="btn-secondary" (click)="cancel()">Hủy</button>
+  </div>
+</div>

@@ -1,15 +1,110 @@
-/* Highlight row khi hover */
-tbody tr:hover {
-    background-color: yellow;
-    cursor: pointer;
+/* Header */
+h2 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 25px;
+  font-size: 26px;
+  border-bottom: 3px solid #2196F3;
+  padding-bottom: 15px;
 }
 
-/* Style cho table */
+/* Create New Button */
+button {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+/* Table Styles */
 table {
-    border-collapse: collapse;
-    width: 100%;
+  border-collapse: collapse;
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+thead {
+  background: linear-gradient(135deg, #2196F3 0%, #1976D2 100%);
+}
+
+th {
+  padding: 15px 12px;
+  text-align: left;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
 }
 
 td {
-    padding: 8px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  font-size: 13px;
+  color: #555;
+  vertical-align: middle;
+}
+
+/* Mô tả column - giới hạn chiều rộng */
+td:nth-child(3) {
+  max-width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Image */
+td img {
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Highlight row khi hover */
+tbody tr {
+  transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+  background: linear-gradient(135deg, #fff9c4 0%, #fff59d 100%);
+  cursor: pointer;
+}
+
+/* Action Links */
+td a {
+  color: #2196F3;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+td a:hover {
+  background-color: #e3f2fd;
+}
+
+td a:nth-child(1) { color: #FF9800; } /* Edit - Orange */
+td a:nth-child(1):hover { background-color: #fff3e0; }
+
+td a:last-child { color: #f44336; } /* Delete - Red */
+td a:last-child:hover { background-color: #ffebee; }
+
+/* Info text */
+p {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 15px;
 }

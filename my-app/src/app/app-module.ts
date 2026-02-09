@@ -20,6 +20,7 @@ import { Books } from './books/books';
 import { Ex22 } from './ex22/ex22';
 import { BookDetailComponent } from './book-detail.component/book-detail.component';
 import { FileUploadComponent } from './file-upload.component/file-upload.component';
+import { BookForm } from './book-form/book-form';
 @NgModule({
   declarations: [
     App,
@@ -38,7 +39,8 @@ import { FileUploadComponent } from './file-upload.component/file-upload.compone
     Books,
     Ex22,
     BookDetailComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    BookForm
   ],
   imports: [
     BrowserModule,

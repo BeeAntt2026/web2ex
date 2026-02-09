@@ -1,67 +1,71 @@
-<h2>Add New Book with Image Upload</h2>
+<h2>THÊM SÁCH MỚI</h2>
 
 <p style="color: green;">{{message}}</p>
 
-<!-- Book Form -->
-<div class="book-form">
-  <div>
-    <label>Book ID:</label>
-    <input type="text" [(ngModel)]="bookId" placeholder="e.g., b6">
-  </div>
-  <div>
-    <label>Book Name:</label>
-    <input type="text" [(ngModel)]="bookName" placeholder="Enter book name">
-  </div>
-  <div>
-    <label>Price:</label>
-    <input type="number" [(ngModel)]="bookPrice" placeholder="Enter price">
-  </div>
-</div>
-
-<!-- File Upload -->
-<div class="file-upload-section">
-  <label>Book Image:</label>
-  <input type="file" class="file-input" accept="image/*"
-    (change)="onFileSelected($event)" #fileUpload name="image">
-  <div class="file-upload">
-    {{fileName || "No file uploaded yet."}}
-    <button class="upload-btn" (click)="fileUpload.click()">
-      Choose Image
-    </button>
+<div class="form-container">
+  <!-- Book Form -->
+  <div class="form-group">
+    <label>Mã sách:</label>
+    <input type="text" [(ngModel)]="bookId" placeholder="Nhập mã sách (vd: b6)">
   </div>
   
-  <!-- Upload Progress -->
-  <div *ngIf="uploadProgress > 0" class="progress-bar">
-    <div [style.width.%]="uploadProgress">{{uploadProgress}}%</div>
+  <div class="form-group">
+    <label>Tên sách:</label>
+    <input type="text" [(ngModel)]="tensach" placeholder="Nhập tên sách">
   </div>
   
-  <!-- Preview uploaded image -->
-  <div *ngIf="uploadedImagePath">
-    <p>Uploaded: {{uploadedImagePath}}</p>
-    <img [src]="'http://localhost:3001/image/' + uploadedImagePath" width="100" height="100">
+  <div class="form-group">
+    <label>Giá bán:</label>
+    <input type="number" [(ngModel)]="giaban" placeholder="Nhập giá bán">
+  </div>
+  
+  <div class="form-group">
+    <label>Mô tả:</label>
+    <textarea [(ngModel)]="mota" placeholder="Nhập mô tả sách" rows="4"></textarea>
+  </div>
+  
+  <div class="form-group">
+    <label>Số lượng tồn:</label>
+    <input type="number" [(ngModel)]="soluongton" placeholder="Nhập số lượng">
+  </div>
+  
+  <div class="form-group">
+    <label>Mã CD:</label>
+    <input type="number" [(ngModel)]="maCD" placeholder="Nhập mã CD">
+  </div>
+  
+  <div class="form-group">
+    <label>Mã NXB:</label>
+    <input type="number" [(ngModel)]="maNXB" placeholder="Nhập mã NXB">
+  </div>
+
+  <!-- File Upload -->
+  <div class="form-group">
+    <label>Ảnh bìa:</label>
+    <input type="file" class="file-input" accept="image/*"
+      (change)="onFileSelected($event)" #fileUpload>
+    <div class="file-upload">
+      {{fileName || "Chưa chọn ảnh"}}
+      <button type="button" class="upload-btn" (click)="fileUpload.click()">
+        Chọn ảnh
+      </button>
+    </div>
+    
+    <!-- Upload Progress -->
+    <div *ngIf="uploadProgress > 0" class="progress-bar">
+      <div [style.width.%]="uploadProgress">{{uploadProgress}}%</div>
+    </div>
+    
+    <!-- Preview uploaded image -->
+    <div *ngIf="uploadedImagePath" class="preview">
+      <p>Đã upload: {{uploadedImagePath}}</p>
+      <img [src]="getImageUrl(uploadedImagePath)" width="100" height="100">
+    </div>
+  </div>
+
+  <!-- Buttons -->
+  <div class="button-group">
+    <button class="btn-primary" (click)="addBook()">Thêm sách</button>
+    <button class="btn-secondary" (click)="cancel()">Hủy</button>
   </div>
 </div>
-
-<!-- Add Book Button -->
-<button class="add-book-btn" (click)="addBook()">Add Book</button>
-
-<hr>
-
-<!-- Books List -->
-<h3>Current Books</h3>
-<table border="1">
-  <tr>
-    <th>BookId</th>
-    <th>BookName</th>
-    <th>Price</th>
-    <th>Image</th>
-  </tr>
-  <tr *ngFor="let book of books">
-    <td>{{book.BookId}}</td>
-    <td>{{book.BookName}}</td>
-    <td>{{book.Price}}</td>
-    <td>
-      <img [src]="getImageUrl(book.Image)" width="50" height="50">
-    </td>
-  </tr>
-</table>

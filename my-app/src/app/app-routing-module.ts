@@ -15,6 +15,7 @@ import { Books } from './books/books';
 import { Ex22 } from './ex22/ex22';
 import { BookDetailComponent } from './book-detail.component/book-detail.component';
 import { FileUploadComponent } from './file-upload.component/file-upload.component';
+import { BookForm } from './book-form/book-form';
 const routes: Routes = [
   { path: 'file-upload', component: FileUploadComponent },
   { path: 'add-book', component: FileUploadComponent },
@@ -31,12 +32,14 @@ const routes: Routes = [
   { path: 'fake-product-2', component: FakeProduct2 },
   { path: 'bitcoin', component: Bitcoin },
   { path: 'ex28', component: Bitcoin },  
+  { path: 'books/create', component: FileUploadComponent },
+  { path: 'books/edit/:id', component: BookForm },
+  { path: 'books/detail/:id', component: BookDetailComponent },
   { path: 'books', component: Books },
   { path: 'ex39', component: Books },
   { path: 'ex22', component: Ex22 },
   { path: 'ex41/:id', component: BookDetailComponent },
   { path: 'ex49', component: FileUploadComponent },
-
 ];
 
 @NgModule({

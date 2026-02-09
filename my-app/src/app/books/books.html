@@ -1,21 +1,37 @@
-<p>books works!</p>
-{{errMessage}}
+<h2>QUẢN LÝ THÔNG TIN SÁCH</h2>
+<button (click)="navigateToCreate()">Create New</button>
+
+<p>Số lượng sách: {{ books?.length }}</p>
+
 <table border="1">
+  <thead>
     <tr>
-        <td>BookId</td>
-        <td>BookName</td>
-        <td>Price</td>
-        <td>Image</td>
+      <th>Tensach</th>
+      <th>Giaban</th>
+      <th>Mota</th>
+      <th>Anhbia</th>
+      <th>Ngaycapnhat</th>
+      <th>Soluongton</th>
+      <th>MaCD</th>
+      <th>MaNXB</th>
+      <th></th>
     </tr>
-        <tbody>
-            <tr *ngFor="let book of books" (click)="viewBookDetail(book.BookId)">
-                <td>{{book.BookId}}</td>
-                <td>{{book.BookName}}</td>
-                <td>{{book.Price}} </td>
-                <td>
-                <img src="http://localhost:3000/images/{{book.Image}}" width="50px"
-                height="50px">
-                </td>
-            </tr>
-        </tbody>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{ book.Tensach }}</td>
+      <td>{{ book.Giaban }}</td>
+      <td>{{ book.Mota }}</td>
+      <td><img [src]="getImageUrl(book.Anhbia)" width="50"></td>
+      <td>{{ book.Ngaycapnhat }}</td>
+      <td>{{ book.Soluongton }}</td>
+      <td>{{ book.MaCD }}</td>
+      <td>{{ book.MaNXB }}</td>
+      <td>
+        <a (click)="editBook(book.BookId)">Edit</a> |
+        <a (click)="viewBookDetail(book.BookId)">Details</a> |
+        <a (click)="deleteBook(book.BookId)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
 </table>

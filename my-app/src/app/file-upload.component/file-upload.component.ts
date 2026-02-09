@@ -1,5 +1,6 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { finalize } from 'rxjs/internal/operators/finalize';
 import { Subscription } from 'rxjs/internal/Subscription';
 
@@ -19,24 +20,16 @@ export class FileUploadComponent {
   uploadedImagePath = '';
   message = '';
   
-  // Book form fields
+  // Book form fields - theo cấu trúc mới
   bookId = '';
-  bookName = '';
-  bookPrice: number = 0;
+  tensach = '';
+  giaban: number = 0;
+  mota = '';
+  soluongton: number = 0;
+  maCD: number = 0;
+  maNXB: number = 0;
   
-  // Books list
-  books: any[] = [];
-  
-  constructor(private http: HttpClient) {
-    this.loadBooks();
-  }
-  
-  loadBooks() {
-    this.http.get<any[]>('http://localhost:3000/books').subscribe({
-      next: (data) => { this.books = data; },
-      error: (err) => { console.error('Error loading books:', err); }
-    });
-  }
+  constructor(private http: HttpClient, private router: Router) {}
   
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -60,9 +53,8 @@ export class FileUploadComponent {
             this.uploadProgress = Math.round(100 * (event.loaded / event.total!));
           }
           if (event.type == HttpEventType.Response) {
-            // Server trả về 200 OK, lưu tên file
             this.uploadedImagePath = this.fileName;
-            this.message = 'Image uploaded successfully!';
+            this.message = 'Upload ảnh thành công!';
           }
         },
         error: (err) => {
@@ -73,33 +65,36 @@ export class FileUploadComponent {
   }
   
   addBook() {
-    if (!this.bookId || !this.bookName || !this.uploadedImagePath) {
-      this.message = 'Please fill all fields and upload an image first!';
+    if (!this.bookId || !this.tensach) {
+      this.message = 'Vui lòng nhập đầy đủ thông tin!';
       return;
     }
     
     const newBook = {
       BookId: this.bookId,
-      BookName: this.bookName,
-      Price: this.bookPrice,
-      Image: this.uploadedImagePath
+      Tensach: this.tensach,
+      Giaban: this.giaban,
+      Mota: this.mota,
+      Anhbia: this.uploadedImagePath || 'default.png',
+      Ngaycapnhat: new Date().toLocaleDateString('vi-VN'),
+      Soluongton: this.soluongton,
+      MaCD: this.maCD,
+      MaNXB: this.maNXB
     };
     
     this.http.post<any[]>('http://localhost:3000/books', newBook).subscribe({
-      next: (data) => {
-        this.books = data;
-        this.message = 'Book added successfully!';
-        // Reset form
-        this.bookId = '';
-        this.bookName = '';
-        this.bookPrice = 0;
-        this.uploadedImagePath = '';
-        this.fileName = '';
+      next: () => {
+        alert('Thêm sách thành công!');
+        this.router.navigate(['/books']);
       },
       error: (err) => {
-        this.message = 'Error adding book: ' + err.message;
+        this.message = 'Lỗi thêm sách: ' + err.message;
       }
     });
+  }
+  
+  cancel() {
+    this.router.navigate(['/books']);
   }
   
   cancelUpload() {
@@ -112,20 +107,13 @@ export class FileUploadComponent {
     this.uploadSub = new Subscription();
   }
 
-  // Hàm xác định URL ảnh dựa vào tên file
-  // Ảnh cũ (b1-b5) lưu ở my-server (port 3000)
-  // Ảnh mới upload lưu ở my-server-uploadfile (port 3001)
   getImageUrl(imageName: string): string {
-    // Danh sách ảnh cũ lưu ở my-server
-    const oldImages = ['b1.png', 'b2.png', 'b3.png', 'b4.png', 'b5.png'];
-    
+    if (!imageName) return '';
+    const oldImages = ['b1.png', 'b2.png', 'b3.png', 'b4.png', 'b5.png', 'THCB.jpg', 'TH004.jpg', 'LTWeb2005.jpg'];
     if (oldImages.includes(imageName)) {
-      // Ảnh cũ - lấy từ my-server (port 3000)
       return 'http://localhost:3000/images/' + imageName;
-    } else {
-      // Ảnh mới - lấy từ my-server-uploadfile (port 3001)
-      return 'http://localhost:3001/image/' + imageName;
     }
+    return 'http://localhost:3001/image/' + imageName;
   }
 }
 

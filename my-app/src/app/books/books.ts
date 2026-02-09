@@ -9,20 +9,66 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrl: './books.css',
 })
 export class Books implements OnInit {
-  books:any;
-  errMessage:string='';
-  constructor(private _service: BookAPIservice, private router: Router, private activeRouter: ActivatedRoute){
-  }
+  books: any;
+  errMessage: string = '';
+
+  constructor(
+    private _service: BookAPIservice, 
+    private router: Router, 
+    private activeRouter: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this._service.getBooks().subscribe({
-      next:(data)=>{this.books=data},
-      error:(err)=>{this.errMessage=err}
-    })
+    this.loadBooks();
   }
 
-viewBookDetail(bookId:string){
-  console.log('Navigating to book detail with ID:', bookId);
-  this.router.navigate(['/ex41', bookId]);
-}
+  loadBooks(): void {
+    console.log('Loading books...');
+    this._service.getBooks().subscribe({
+      next: (data) => { 
+        console.log('Books loaded:', data);
+        this.books = data;
+      },
+      error: (err) => { 
+        console.error('Error loading books:', err);
+        this.errMessage = err;
+      }
+    });
+  }
+
+  viewBookDetail(bookId: string) {
+    console.log('Navigating to book detail with ID:', bookId);
+    this.router.navigate(['/books/detail', bookId]);
+  }
+
+  navigateToCreate() {
+    this.router.navigate(['/books/create']);
+  }
+
+  editBook(bookId: string) {
+    this.router.navigate(['/books/edit', bookId]);
+  }
+
+  // Xóa sách với xác nhận
+  deleteBook(bookId: string) {
+    if (confirm('Bạn có chắc muốn xóa sách này?')) {
+      this._service.deleteBook(bookId).subscribe({
+        next: () => {
+          alert('Xóa thành công!');
+          this.loadBooks(); // Tải lại danh sách
+        },
+        error: (err) => console.error(err)
+      });
+    }
+  }
+
+  // Helper xử lý URL ảnh
+  getImageUrl(imageName: string): string {
+    if (!imageName) return '';
+    const oldImages = ['b1.png', 'b2.png', 'b3.png', 'b4.png', 'b5.png'];
+    if (oldImages.includes(imageName)) {
+      return 'http://localhost:3000/images/' + imageName;
+    }
+    return 'http://localhost:3001/images/' + imageName;
+  }
 }

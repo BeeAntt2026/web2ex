@@ -1,25 +1,52 @@
-<p>book-detail works!</p>
-<p>{{errMessage}}</p>
-<a routerLink="/ex39">Back to Book List</a>
-<br><br>
-Book Id: <input type="text" #bookId> <button
-(click)="searchBook(bookId.value)">Search</button>
-<table>
+<h2>CHI TIẾT SÁCH</h2>
+
+<p style="color: red;">{{errMessage}}</p>
+
+<a routerLink="/books" class="back-link">← Quay lại danh sách</a>
+
+<div *ngIf="book" class="book-detail-container">
+  <table border="1" class="detail-table">
     <tr>
-        <td>Book Id:</td>
-        <td>{{book.BookId}}</td>
+      <td><strong>Mã sách:</strong></td>
+      <td>{{book.BookId}}</td>
     </tr>
     <tr>
-        <td>Book Name:</td>
-        <td>{{book.BookName}}</td>
+      <td><strong>Tên sách:</strong></td>
+      <td>{{book.Tensach}}</td>
     </tr>
     <tr>
-        <td>Price:</td>
-        <td>{{book.Price}} </td>
+      <td><strong>Giá bán:</strong></td>
+      <td>{{book.Giaban | number}} VNĐ</td>
     </tr>
     <tr>
-        <td colspan="2">
-        <img src="http://localhost:3000/images/{{book.Image}}">
-    </td>
+      <td><strong>Mô tả:</strong></td>
+      <td>{{book.Mota}}</td>
     </tr>
-</table>
+    <tr>
+      <td><strong>Ngày cập nhật:</strong></td>
+      <td>{{book.Ngaycapnhat}}</td>
+    </tr>
+    <tr>
+      <td><strong>Số lượng tồn:</strong></td>
+      <td>{{book.Soluongton}}</td>
+    </tr>
+    <tr>
+      <td><strong>Mã CD:</strong></td>
+      <td>{{book.MaCD}}</td>
+    </tr>
+    <tr>
+      <td><strong>Mã NXB:</strong></td>
+      <td>{{book.MaNXB}}</td>
+    </tr>
+    <tr>
+      <td><strong>Ảnh bìa:</strong></td>
+      <td>
+        <img [src]="getImageUrl(book.Anhbia)" width="200" alt="Ảnh bìa sách">
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div *ngIf="!book && !errMessage">
+  <p>Đang tải thông tin sách...</p>
+</div>
