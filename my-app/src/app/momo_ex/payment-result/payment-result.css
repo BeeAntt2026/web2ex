@@ -1,0 +1,253 @@
+.result-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+}
+
+.result-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    width: 100%;
+    max-width: 500px;
+    overflow: hidden;
+}
+
+/* Headers */
+.result-header {
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+.success-header {
+    background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+}
+
+.error-header {
+    background: linear-gradient(135deg, #f44336 0%, #c62828 100%);
+}
+
+.info-header {
+    background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+}
+
+.header-logo {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 10px;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.result-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+/* Body */
+.result-body {
+    padding: 30px;
+    text-align: center;
+}
+
+.status-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+    font-size: 40px;
+    color: white;
+}
+
+.success-icon {
+    background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+}
+
+.error-icon {
+    background: linear-gradient(135deg, #f44336 0%, #c62828 100%);
+}
+
+.info-icon {
+    background: linear-gradient(135deg, #2196f3 0%, #1565c0 100%);
+}
+
+.result-body h3 {
+    margin: 0 0 10px 0;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.status-message {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+/* Transaction Details */
+.transaction-details {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.detail-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+}
+
+.detail-section h4 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 1rem;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-row:last-child {
+    border-bottom: none;
+}
+
+.detail-row .label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.detail-row .value {
+    color: #333;
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-align: right;
+    max-width: 60%;
+    word-break: break-all;
+}
+
+.detail-row .value.amount {
+    color: #A50064;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.detail-row .value.highlight {
+    color: #1565c0;
+    font-weight: bold;
+}
+
+.detail-row .value.code {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+}
+
+.success-code {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.error-code {
+    background: #ffebee;
+    color: #c62828;
+}
+
+/* Action Buttons */
+.action-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+}
+
+.btn-primary {
+    flex: 1;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #A50064 0%, #8a0053 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(165, 0, 100, 0.3);
+}
+
+.btn-secondary {
+    flex: 1;
+    padding: 14px 20px;
+    background: #f0f0f0;
+    color: #333;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+.btn-outline {
+    flex: 1;
+    padding: 14px 20px;
+    background: white;
+    color: #A50064;
+    border: 2px solid #A50064;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-outline:hover {
+    background: #fef5fa;
+}
+
+/* Footer */
+.result-footer {
+    padding: 15px;
+    background: #f8f9fa;
+    text-align: center;
+    border-top: 1px solid #e9ecef;
+    color: #666;
+}
+
+/* Print styles */
+@media print {
+    .result-container {
+        background: white;
+        min-height: auto;
+    }
+    
+    .result-card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+    
+    .action-buttons {
+        display: none;
+    }
+}

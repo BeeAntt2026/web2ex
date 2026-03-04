@@ -1,0 +1,117 @@
+<div class="payment-container">
+  <div class="payment-card">
+    <!-- Header -->
+    <div class="payment-header">
+      <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square.png" alt="MoMo Logo" class="momo-logo">
+      <h2>Thanh toán qua MoMo</h2>
+      <div class="step-indicator">
+        <span [class.active]="step === 'input'" [class.completed]="step !== 'input'">1. Nhập thông tin</span>
+        <span class="separator">→</span>
+        <span [class.active]="step === 'confirm'" [class.completed]="step === 'processing'">2. Xác nhận</span>
+        <span class="separator">→</span>
+        <span [class.active]="step === 'processing'">3. Thanh toán</span>
+      </div>
+    </div>
+
+    <!-- Step 1: Input -->
+    <div class="payment-body" *ngIf="step === 'input'">
+      <div class="form-section">
+        <label class="form-label">Số tiền thanh toán (VNĐ)</label>
+        <input type="number" 
+               class="amount-input" 
+               [(ngModel)]="amount" 
+               [min]="minAmount" 
+               [max]="maxAmount"
+               placeholder="Nhập số tiền">
+        
+        <div class="quick-amounts">
+          <button *ngFor="let amt of quickAmounts" 
+                  class="quick-btn" 
+                  [class.selected]="amount === amt"
+                  (click)="selectQuickAmount(amt)">
+            {{ amt | number:'1.0-0' }}đ
+          </button>
+        </div>
+
+        <label class="form-label">Nội dung thanh toán</label>
+        <input type="text" 
+               class="description-input" 
+               [(ngModel)]="orderDescription" 
+               placeholder="Nhập mô tả đơn hàng"
+               maxlength="100">
+      </div>
+
+      <div class="amount-hint">
+        <small>Số tiền từ {{ minAmount | number:'1.0-0' }} đến {{ maxAmount | number:'1.0-0' }} VNĐ</small>
+      </div>
+
+      <div *ngIf="errorMsg" class="error-alert">{{ errorMsg }}</div>
+
+      <button class="momo-btn" (click)="proceedToConfirm()">
+        Tiếp tục
+      </button>
+    </div>
+
+    <!-- Step 2: Confirm -->
+    <div class="payment-body" *ngIf="step === 'confirm'">
+      <div class="order-summary">
+        <h3>Xác nhận đơn hàng</h3>
+        
+        <div class="summary-row">
+          <span>Mã đơn hàng:</span>
+          <strong>{{ order?.orderId }}</strong>
+        </div>
+        <div class="summary-row">
+          <span>Nội dung:</span>
+          <span>{{ order?.orderInfo }}</span>
+        </div>
+        <div class="summary-row">
+          <span>Thời gian tạo:</span>
+          <span>{{ order?.createdAt | date:'dd/MM/yyyy HH:mm' }}</span>
+        </div>
+        
+        <div class="total-row">
+          <span>Tổng thanh toán:</span>
+          <span class="total-amount">{{ amount | number:'1.0-0' }} VNĐ</span>
+        </div>
+      </div>
+
+      <div class="payment-method">
+        <div class="method-icon">
+          <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square.png" alt="MoMo">
+        </div>
+        <div class="method-info">
+          <strong>Ví MoMo</strong>
+          <small>Thanh toán an toàn qua ví điện tử MoMo</small>
+        </div>
+      </div>
+
+      <div *ngIf="errorMsg" class="error-alert">{{ errorMsg }}</div>
+
+      <div class="button-group">
+        <button class="back-btn" (click)="backToInput()">← Quay lại</button>
+        <button class="momo-btn" (click)="payWithMoMo()" [disabled]="loading">
+          Xác nhận thanh toán
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 3: Processing -->
+    <div class="payment-body processing" *ngIf="step === 'processing'">
+      <div class="processing-animation">
+        <div class="spinner-circle"></div>
+        <p>Đang kết nối với MoMo...</p>
+        <small>Vui lòng không đóng trang này</small>
+      </div>
+      <button class="cancel-btn" (click)="cancelPayment()">Hủy giao dịch</button>
+    </div>
+
+    <!-- Footer -->
+    <div class="payment-footer">
+      <div class="security-info">
+        <span>🔒</span>
+        <small>Giao dịch được bảo mật bởi MoMo</small>
+      </div>
+    </div>
+  </div>
+</div>

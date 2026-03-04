@@ -21,6 +21,8 @@ import { Ex22 } from './ex22/ex22';
 import { BookDetailComponent } from './book-detail.component/book-detail.component';
 import { FileUploadComponent } from './file-upload.component/file-upload.component';
 import { BookForm } from './book-form/book-form';
+import { Payment } from './momo_ex/payment/payment';
+import { PaymentResult } from './momo_ex/payment-result/payment-result';
 @NgModule({
   declarations: [
     App,
@@ -40,7 +42,9 @@ import { BookForm } from './book-form/book-form';
     Ex22,
     BookDetailComponent,
     FileUploadComponent,
-    BookForm
+    BookForm,
+    Payment,
+    PaymentResult
   ],
   imports: [
     BrowserModule,

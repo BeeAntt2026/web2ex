@@ -1,0 +1,98 @@
+<div class="result-container">
+    <!-- No params - Direct access without MoMo redirect -->
+    <div class="result-card info" *ngIf="!hasParams">
+        <div class="result-header info-header">
+            <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square.png" alt="MoMo" class="header-logo">
+            <h2>Kết quả thanh toán</h2>
+        </div>
+        <div class="result-body">
+            <div class="status-icon info-icon">
+                <span>ℹ</span>
+            </div>
+            <h3>Chưa có giao dịch</h3>
+            <p class="status-message">Bạn chưa thực hiện thanh toán nào. Vui lòng bắt đầu thanh toán từ trang Payment.</p>
+            <div class="action-buttons">
+                <button class="btn-secondary" (click)="goBackToHome()">Về trang chủ</button>
+                <button class="btn-primary" (click)="goToPayment()">Đi đến thanh toán</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Has params - Show result from MoMo -->
+    <div class="result-card" [ngClass]="{'success': isSuccess, 'error': !isSuccess}" *ngIf="hasParams">
+        <div class="result-header" [ngClass]="{'success-header': isSuccess, 'error-header': !isSuccess}">
+            <img src="https://cdn.haitrieu.com/wp-content/uploads/2022/10/Logo-MoMo-Square.png" alt="MoMo" class="header-logo">
+            <h2>Kết quả thanh toán</h2>
+        </div>
+
+        <div class="result-body">
+            <div class="status-icon" [ngClass]="{'success-icon': isSuccess, 'error-icon': !isSuccess}">
+                <span *ngIf="isSuccess">✓</span>
+                <span *ngIf="!isSuccess">✕</span>
+            </div>
+
+            <h3>{{ isSuccess ? 'Thanh toán thành công!' : 'Thanh toán thất bại!' }}</h3>
+            <p class="status-message">{{ getStatusMessage() }}</p>
+
+            <!-- Transaction Details -->
+            <div class="transaction-details">
+                <div class="detail-section">
+                    <h4>Chi tiết giao dịch</h4>
+                    
+                    <div class="detail-row" *ngIf="transaction.orderId">
+                        <span class="label">Mã đơn hàng</span>
+                        <span class="value">{{ transaction.orderId }}</span>
+                    </div>
+                    
+                    <div class="detail-row" *ngIf="transaction.transId">
+                        <span class="label">Mã giao dịch MoMo</span>
+                        <span class="value highlight">{{ transaction.transId }}</span>
+                    </div>
+                    
+                    <div class="detail-row" *ngIf="transaction.amount">
+                        <span class="label">Số tiền</span>
+                        <span class="value amount">{{ transaction.amount | number:'1.0-0' }} VNĐ</span>
+                    </div>
+                    
+                    <div class="detail-row" *ngIf="transaction.orderInfo">
+                        <span class="label">Nội dung</span>
+                        <span class="value">{{ transaction.orderInfo }}</span>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <span class="label">Phương thức</span>
+                        <span class="value">{{ getPayTypeLabel() }}</span>
+                    </div>
+                    
+                    <div class="detail-row" *ngIf="transaction.responseTime">
+                        <span class="label">Thời gian</span>
+                        <span class="value">{{ formatResponseTime() }}</span>
+                    </div>
+                    
+                    <div class="detail-row">
+                        <span class="label">Mã kết quả</span>
+                        <span class="value code" [ngClass]="{'success-code': isSuccess, 'error-code': !isSuccess}">
+                            {{ transaction.resultCode }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Success actions -->
+            <div class="action-buttons" *ngIf="isSuccess">
+                <button class="btn-outline" (click)="printReceipt()">🖨 In biên lai</button>
+                <button class="btn-primary" (click)="goBackToHome()">Về trang chủ</button>
+            </div>
+
+            <!-- Error actions -->
+            <div class="action-buttons" *ngIf="!isSuccess">
+                <button class="btn-secondary" (click)="goBackToHome()">Về trang chủ</button>
+                <button class="btn-primary" (click)="goToPayment()">Thử lại</button>
+            </div>
+        </div>
+
+        <div class="result-footer">
+            <small>🔒 Giao dịch được bảo mật bởi MoMo</small>
+        </div>
+    </div>
+</div>

@@ -16,6 +16,8 @@ import { Ex22 } from './ex22/ex22';
 import { BookDetailComponent } from './book-detail.component/book-detail.component';
 import { FileUploadComponent } from './file-upload.component/file-upload.component';
 import { BookForm } from './book-form/book-form';
+import { Payment } from './momo_ex/payment/payment';
+import { PaymentResult } from './momo_ex/payment-result/payment-result';
 const routes: Routes = [
   { path: 'file-upload', component: FileUploadComponent },
   { path: 'add-book', component: FileUploadComponent },
@@ -40,6 +42,8 @@ const routes: Routes = [
   { path: 'ex22', component: Ex22 },
   { path: 'ex41/:id', component: BookDetailComponent },
   { path: 'ex49', component: FileUploadComponent },
+  { path: 'momo-payment', component: Payment },
+  { path: 'momo-payment-result', component: PaymentResult },
 ];
 
 @NgModule({
