@@ -23,6 +23,8 @@ import { FileUploadComponent } from './file-upload.component/file-upload.compone
 import { BookForm } from './book-form/book-form';
 import { Payment } from './momo_ex/payment/payment';
 import { PaymentResult } from './momo_ex/payment-result/payment-result';
+import { Fashion } from './fashion/fashion';
+import { FashionDetailComponent } from './fashion-detail/fashion-detail.component';
 @NgModule({
   declarations: [
     App,
@@ -44,7 +46,9 @@ import { PaymentResult } from './momo_ex/payment-result/payment-result';
     FileUploadComponent,
     BookForm,
     Payment,
-    PaymentResult
+    PaymentResult,
+    Fashion,
+    FashionDetailComponent
   ],
   imports: [
     BrowserModule,

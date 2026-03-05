@@ -1,0 +1,24 @@
+<h2>FASHION LIST</h2>
+{{errMessage}}
+<table border="1">
+<tr>
+<td>Id</td>
+<td>Fashion Subject</td>
+<td>Fashion Detail</td>
+<td>Image</td>
+<td>Action</td>
+</tr>
+<tbody>
+<tr *ngFor="let fashion of fashions">
+<td>{{fashion._id}}</td>
+<td>{{fashion.fashion_subject}}</td>
+<td>{{fashion.fashion_detail}} </td>
+<td>
+<img src="{{fashion.fashion_image}}" width="100px" height="100px">
+</td>
+<td>
+  <a [routerLink]="['/fashion', fashion._id]">View Detail</a>
+</td>
+</tr>
+</tbody>
+</table>

@@ -18,6 +18,8 @@ import { FileUploadComponent } from './file-upload.component/file-upload.compone
 import { BookForm } from './book-form/book-form';
 import { Payment } from './momo_ex/payment/payment';
 import { PaymentResult } from './momo_ex/payment-result/payment-result';
+import { Fashion } from './fashion/fashion';
+import { FashionDetailComponent } from './fashion-detail/fashion-detail.component';
 const routes: Routes = [
   { path: 'file-upload', component: FileUploadComponent },
   { path: 'add-book', component: FileUploadComponent },
@@ -44,6 +46,8 @@ const routes: Routes = [
   { path: 'ex49', component: FileUploadComponent },
   { path: 'momo-payment', component: Payment },
   { path: 'momo-payment-result', component: PaymentResult },
+  { path: 'fashion', component: Fashion },
+  { path: 'fashion/:id', component: FashionDetailComponent },
 ];
 
 @NgModule({
