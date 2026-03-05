@@ -20,7 +20,11 @@ import { Payment } from './momo_ex/payment/payment';
 import { PaymentResult } from './momo_ex/payment-result/payment-result';
 import { Fashion } from './fashion/fashion';
 import { FashionDetailComponent } from './fashion-detail/fashion-detail.component';
+import { Login } from './login/login';
+import { ShoppingCart } from './shopping-cart/shopping-cart';
 const routes: Routes = [
+  { path: 'login', component: Login },
+  { path: 'shopping-cart', component: ShoppingCart },
   { path: 'file-upload', component: FileUploadComponent },
   { path: 'add-book', component: FileUploadComponent },
   {path:'ex26',component:FakeProduct},

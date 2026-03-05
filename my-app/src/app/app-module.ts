@@ -27,6 +27,7 @@ import { Fashion } from './fashion/fashion';
 import { FashionDetailComponent } from './fashion-detail/fashion-detail.component';
 import { Login } from './login/login';
 import { ShoppingCart } from './shopping-cart/shopping-cart';
+import { ProductList } from './product-list/product-list';
 @NgModule({
   declarations: [
     App,
@@ -52,7 +53,8 @@ import { ShoppingCart } from './shopping-cart/shopping-cart';
     Fashion,
     FashionDetailComponent,
     Login,
-    ShoppingCart
+    ShoppingCart,
+    ProductList
   ],
   imports: [
     BrowserModule,

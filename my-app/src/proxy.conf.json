@@ -23,5 +23,40 @@
     "target": "http://localhost:3002",
     "secure": false,
     "changeOrigin": true
+  },
+  "/login": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/read-login-cookie": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/add-to-cart": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/cart": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/update-cart": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/remove-from-cart": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/clear-cart": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true
   }
 }

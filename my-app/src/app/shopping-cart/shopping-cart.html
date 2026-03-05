@@ -1,1 +1,71 @@
-<p>shopping-cart works!</p>
+<div class="container mt-4">
+  <h4 class="text-center mb-4">Shopping cart</h4>
+
+  <div *ngIf="msg" class="alert alert-success">{{ msg }}</div>
+
+  <!-- Giỏ trống -->
+  <div *ngIf="cartItems.length === 0" class="text-center py-5 text-muted">
+    <h5>Giỏ hàng trống</h5>
+    <button class="btn btn-primary mt-3" (click)="continueShopping()">
+      Continue shopping
+    </button>
+  </div>
+
+  <!-- Bảng giỏ hàng -->
+  <table class="table table-bordered align-middle" *ngIf="cartItems.length > 0">
+    <thead class="table-light text-center">
+      <tr>
+        <th>Remove</th>
+        <th>SKU</th>
+        <th>Image</th>
+        <th>Product(s)</th>
+        <th>Price</th>
+        <th>Qty.</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of cartItems"
+          [class.table-danger]="item.checked">
+        <!-- Checkbox: check → sẽ bị xóa khi bấm Update -->
+        <td class="text-center">
+          <input type="checkbox" [(ngModel)]="item.checked">
+        </td>
+        <td>{{ item.sku || '—' }}</td>
+        <td class="text-center">
+          <img [src]="'assets/images/' + item.image"
+               width="60" height="60" style="object-fit: contain;"
+               onerror="this.src='https://via.placeholder.com/60?text=Ring'"
+               [alt]="item.name">
+        </td>
+        <td>{{ item.name }}</td>
+        <td class="text-end">${{ item.price.toFixed(2) }}</td>
+        <td class="text-center">
+          <input type="number"
+                 [(ngModel)]="item.quantity"
+                 min="1" max="99"
+                 class="form-control form-control-sm text-center"
+                 style="width: 70px; margin: auto;"
+                 [disabled]="item.checked">
+        </td>
+        <td class="text-end">${{ lineTotal(item).toFixed(2) }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="6" class="text-end fw-bold">Tổng cộng:</td>
+        <td class="text-end fw-bold text-danger">${{ cartTotal().toFixed(2) }}</td>
+      </tr>
+    </tfoot>
+  </table>
+
+  <!-- Nút hành động -->
+  <div class="d-flex justify-content-end gap-2" *ngIf="cartItems.length > 0">
+    <button class="btn btn-primary" (click)="updateCart()">
+      Update shopping cart
+    </button>
+    <button class="btn btn-secondary" (click)="continueShopping()">
+      Continue shopping
+    </button>
+  </div>
+</div>
