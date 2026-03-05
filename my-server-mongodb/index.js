@@ -9,7 +9,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 const cors=require("cors");
 // ← Cho phép credentials để Session hoạt động với Angular
 app.use(cors({
-  origin: 'http://localhost:4200',
+  origin: function(origin, callback) {
+    // Cho phép localhost với bất kỳ port nào
+    if (!origin || origin.startsWith('http://localhost')) {
+      callback(null, origin);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 var cookieParser = require('cookie-parser');
@@ -224,12 +231,12 @@ app.post("/products/seed", async (req, res) => {
   try {
     await productCollection.deleteMany({});
     await productCollection.insertMany([
-      { name: "Diamond Promise Ring 1/6 ct tw Round-cut 10K White Gold",    price: 399.99, sku: "SKU001", image: "ring1.jpg" },
-      { name: "Diamond Promise Ring 1/4 ct tw Round/Baguette 10K White Gold", price: 529.00, sku: "SKU002", image: "ring2.jpg" },
-      { name: "Diamond Promise Ring 1/6 ct tw Black/White Sterling Silver",  price: 159.00, sku: "SKU003", image: "ring3.jpg" },
-      { name: "Diamond Promise Ring 1/5 ct tw Round-cut Sterling Silver",    price: 289.00, sku: "SKU004", image: "ring4.jpg" },
-      { name: "Diamond Promise Ring 1/5 ct tw Round-cut Sterling Silver",    price: 289.00, sku: "SKU005", image: "ring5.jpg" },
-      { name: "Diamond Promise Ring 1/8 ct tw Round-cut Sterling Silver Ring", price: 229.00, sku: "SKU006", image: "ring6.jpg" },
+      { name: "Diamond Promise Ring 1/6 ct tw Round-cut 10K White Gold",    price: 399.99, sku: "SKU001", image: "https://cdn.pnj.io/images/thumbnails/485/485/detailed/180/sp-GNDD00C000074-nhan-cuoi-nam-kim-cuong-vang-18k-pnj-chung-doi-1.png" },
+      { name: "Diamond Promise Ring 1/4 ct tw Round/Baguette 10K White Gold", price: 529.00, sku: "SKU002", image: "https://cdn.pnj.io/images/thumbnails/485/485/detailed/191/sp-cap-nhan-cuoi-vang-trang-10k-dinh-da-ecz-pnj-vang-son-00146-00106-1.png" },
+      { name: "Diamond Promise Ring 1/6 ct tw Black/White Sterling Silver",  price: 159.00, sku: "SKU003", image: "https://cdn.pnj.io/images/thumbnails/485/485/detailed/177/sp-gn00ddw062103-vo-nhan-nam-kim-cuong-vang-trang-18k-pnj-1.png" },
+      { name: "Diamond Promise Ring 1/5 ct tw Round-cut Sterling Silver",    price: 289.00, sku: "SKU004", image: "https://cdn.pnj.io/images/thumbnails/485/485/detailed/215/sp-gnxmxmy001798-nhan-nam-vang-18k-dinh-da-ecz-pnj-1.png" },
+      { name: "Diamond Promise Ring 1/5 ct tw Round-cut Sterling Silver",    price: 289.00, sku: "SKU005", image: "https://cdn.pnj.io/images/thumbnails/485/485/detailed/142/gnddddw009144-nhan-nam-kim-cuong-vang-trang-14k-pnj.png" },
+      { name: "Diamond Promise Ring 1/8 ct tw Round-cut Sterling Silver Ring", price: 229.00, sku: "SKU006", image: "https://cdn.pnj.io/images/thumbnails/485/485/detailed/199/sp-gnddddc001708-nhan-nam-kim-cuong-vang-14k-pnj-1.png" },
     ]);
     res.send({ success: true, message: "✅ Seed 6 sản phẩm thành công!" });
   } catch (err) {

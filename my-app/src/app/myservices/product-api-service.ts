@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProductApiService {
-  private API = 'http://localhost:3002/products';
+  // Sử dụng relative URL để proxy xử lý
+  private API = '/products';
 
   constructor(private http: HttpClient) {}
 

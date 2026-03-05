@@ -1,8 +1,38 @@
 {
-  "/products": {
-    "target": "https://fakestoreapi.com",
-    "secure": true,
-    "changeOrigin": true
+  "/cart": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true,
+    "cookieDomainRewrite": "localhost",
+    "cookiePathRewrite": "/"
+  },
+  "/add-to-cart": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true,
+    "cookieDomainRewrite": "localhost",
+    "cookiePathRewrite": "/"
+  },
+  "/update-cart": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true,
+    "cookieDomainRewrite": "localhost",
+    "cookiePathRewrite": "/"
+  },
+  "/remove-from-cart": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true,
+    "cookieDomainRewrite": "localhost",
+    "cookiePathRewrite": "/"
+  },
+  "/clear-cart": {
+    "target": "http://localhost:3002",
+    "secure": false,
+    "changeOrigin": true,
+    "cookieDomainRewrite": "localhost",
+    "cookiePathRewrite": "/"
   },
   "/v1/ticker": {
     "target": "https://api.alternative.me",
@@ -34,27 +64,7 @@
     "secure": false,
     "changeOrigin": true
   },
-  "/add-to-cart": {
-    "target": "http://localhost:3002",
-    "secure": false,
-    "changeOrigin": true
-  },
-  "/cart": {
-    "target": "http://localhost:3002",
-    "secure": false,
-    "changeOrigin": true
-  },
-  "/update-cart": {
-    "target": "http://localhost:3002",
-    "secure": false,
-    "changeOrigin": true
-  },
-  "/remove-from-cart": {
-    "target": "http://localhost:3002",
-    "secure": false,
-    "changeOrigin": true
-  },
-  "/clear-cart": {
+  "/products": {
     "target": "http://localhost:3002",
     "secure": false,
     "changeOrigin": true

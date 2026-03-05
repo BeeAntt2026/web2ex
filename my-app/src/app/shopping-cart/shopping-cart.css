@@ -1,0 +1,331 @@
+/* ===== SHOPPING CART - ELEGANT JEWELRY THEME ===== */
+
+/* Container */
+.cart-container {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+}
+
+/* Header */
+.cart-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.cart-header h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+  color: #d4af37;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  position: relative;
+  display: inline-block;
+}
+
+.cart-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4af37, transparent);
+}
+
+/* Alert Message */
+.cart-alert {
+  background: linear-gradient(135deg, #2d5016 0%, #4a7c23 100%);
+  border: 1px solid #d4af37;
+  color: #fff;
+  border-radius: 10px;
+  padding: 15px 25px;
+  margin-bottom: 30px;
+  text-align: center;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Empty Cart */
+.empty-cart {
+  text-align: center;
+  padding: 80px 20px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 20px;
+  border: 1px dashed rgba(212, 175, 55, 0.3);
+}
+
+.empty-cart-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  opacity: 0.5;
+}
+
+.empty-cart h5 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  color: #d4af37;
+  margin-bottom: 10px;
+}
+
+.empty-cart p {
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 25px;
+}
+
+/* Cart Table Wrapper */
+.cart-table-wrapper {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f5f0 100%);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+/* Cart Table */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+}
+
+.cart-table thead {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d2d44 100%);
+}
+
+.cart-table th {
+  padding: 18px 15px;
+  color: #d4af37;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85rem;
+  border: none;
+}
+
+.cart-table tbody tr {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.3s ease;
+}
+
+.cart-table tbody tr:hover {
+  background: rgba(212, 175, 55, 0.05);
+}
+
+.cart-table tbody tr.item-checked {
+  background: rgba(231, 76, 60, 0.1);
+  opacity: 0.7;
+}
+
+.cart-table td {
+  padding: 20px 15px;
+  vertical-align: middle;
+  color: #2c2c2c;
+  border: none;
+}
+
+/* Checkbox */
+.remove-checkbox {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #d4af37;
+}
+
+/* Product Image */
+.product-thumb {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 10px;
+  background: #f8f5f0;
+  padding: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.product-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* Product Name */
+.product-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 0.95rem;
+  color: #2c2c2c;
+  font-weight: 500;
+}
+
+/* SKU */
+.sku-text {
+  font-size: 0.8rem;
+  color: #888;
+  font-family: monospace;
+}
+
+/* Price */
+.price-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1rem;
+  color: #d4af37;
+  font-weight: 600;
+}
+
+/* Quantity Input */
+.qty-input {
+  width: 70px;
+  text-align: center;
+  border: 2px solid #e0d6c8;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #2c2c2c;
+  transition: all 0.3s ease;
+}
+
+.qty-input:focus {
+  outline: none;
+  border-color: #d4af37;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+}
+
+.qty-input:disabled {
+  background: #f0f0f0;
+  opacity: 0.5;
+}
+
+/* Total Column */
+.total-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  color: #1a1a2e;
+  font-weight: 700;
+}
+
+/* Footer */
+.cart-table tfoot {
+  background: linear-gradient(135deg, #f8f5f0 0%, #fff 100%);
+  border-top: 2px solid #d4af37;
+}
+
+.cart-table tfoot td {
+  padding: 25px 15px;
+}
+
+.grand-total-label {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.1rem;
+  color: #2c2c2c;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.grand-total-value {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.5rem;
+  color: #d4af37;
+  font-weight: 700;
+}
+
+/* Action Buttons */
+.cart-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.btn-update {
+  background: linear-gradient(135deg, #d4af37 0%, #f4e4ba 50%, #d4af37 100%);
+  border: none;
+  color: #1a1a2e;
+  font-weight: 600;
+  padding: 14px 35px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  cursor: pointer;
+}
+
+.btn-update:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+}
+
+.btn-continue {
+  background: transparent;
+  border: 2px solid #d4af37;
+  color: #d4af37;
+  font-weight: 600;
+  padding: 14px 35px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-continue:hover {
+  background: rgba(212, 175, 55, 0.1);
+  transform: translateY(-3px);
+}
+
+.btn-shop {
+  background: linear-gradient(135deg, #d4af37 0%, #f4e4ba 50%, #d4af37 100%);
+  border: none;
+  color: #1a1a2e;
+  font-weight: 600;
+  padding: 14px 35px;
+  border-radius: 30px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+  cursor: pointer;
+}
+
+.btn-shop:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .cart-header h2 {
+    font-size: 1.6rem;
+  }
+  
+  .cart-table th,
+  .cart-table td {
+    padding: 12px 8px;
+    font-size: 0.85rem;
+  }
+  
+  .product-thumb {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .cart-actions {
+    flex-direction: column;
+  }
+  
+  .btn-update,
+  .btn-continue {
+    width: 100%;
+    text-align: center;
+  }
+}

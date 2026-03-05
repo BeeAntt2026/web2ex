@@ -22,7 +22,9 @@ import { Fashion } from './fashion/fashion';
 import { FashionDetailComponent } from './fashion-detail/fashion-detail.component';
 import { Login } from './login/login';
 import { ShoppingCart } from './shopping-cart/shopping-cart';
+import { ProductList } from './product-list/product-list';
 const routes: Routes = [
+  { path: 'product-list', component: ProductList },
   { path: 'login', component: Login },
   { path: 'shopping-cart', component: ShoppingCart },
   { path: 'file-upload', component: FileUploadComponent },

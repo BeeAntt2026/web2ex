@@ -32,7 +32,7 @@ export class ShoppingCart implements OnInit {
   }
 
   lineTotal(item: CartItem): number {
-    return item.price * item.quantity;
+    return (item.price || 0) * (item.quantity || 1);
   }
 
   cartTotal(): number {

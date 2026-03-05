@@ -7,7 +7,8 @@ import { CartItem } from '../myclasses/product';
   providedIn: 'root',
 })
 export class CartApiService {
-  private API = 'http://localhost:3002';
+  // Sử dụng relative URL để proxy xử lý
+  private API = '';
 
   // withCredentials: true → BẮT BUỘC để cookie session được gửi kèm
   private opts = { withCredentials: true };
