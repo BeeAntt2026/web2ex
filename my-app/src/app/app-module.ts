@@ -25,6 +25,8 @@ import { Payment } from './momo_ex/payment/payment';
 import { PaymentResult } from './momo_ex/payment-result/payment-result';
 import { Fashion } from './fashion/fashion';
 import { FashionDetailComponent } from './fashion-detail/fashion-detail.component';
+import { Login } from './login/login';
+import { ShoppingCart } from './shopping-cart/shopping-cart';
 @NgModule({
   declarations: [
     App,
@@ -48,7 +50,9 @@ import { FashionDetailComponent } from './fashion-detail/fashion-detail.componen
     Payment,
     PaymentResult,
     Fashion,
-    FashionDetailComponent
+    FashionDetailComponent,
+    Login,
+    ShoppingCart
   ],
   imports: [
     BrowserModule,
