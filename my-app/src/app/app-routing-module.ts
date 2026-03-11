@@ -23,6 +23,8 @@ import { FashionDetailComponent } from './fashion-detail/fashion-detail.componen
 import { Login } from './login/login';
 import { ShoppingCart } from './shopping-cart/shopping-cart';
 import { ProductList } from './product-list/product-list';
+import { FashionAdminList } from './fashion-admin-list/fashion-admin-list';
+import { FashionForm } from './fashion-form/fashion-form';
 const routes: Routes = [
   { path: 'product-list', component: ProductList },
   { path: 'login', component: Login },
@@ -53,7 +55,10 @@ const routes: Routes = [
   { path: 'momo-payment', component: Payment },
   { path: 'momo-payment-result', component: PaymentResult },
   { path: 'fashion', component: Fashion },
-  { path: 'fashion/:id', component: FashionDetailComponent },
+  { path: 'fashion-admin-list', component: FashionAdminList },
+  { path: 'fashion-form', component: FashionForm },        // Thêm mới
+  { path: 'fashion-form/:id', component: FashionForm },    // Sửa
+  { path: 'fashion/:id', component: FashionDetailComponent }, // Phải đặt cuối cùng
 ];
 
 @NgModule({

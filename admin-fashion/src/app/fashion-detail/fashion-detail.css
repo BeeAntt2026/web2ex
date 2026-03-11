@@ -1,0 +1,16 @@
+/* Button hover effects */
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Image hover effect */
+img:hover {
+  transform: scale(1.02);
+  transition: all 0.3s ease;
+}

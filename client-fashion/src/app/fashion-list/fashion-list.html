@@ -1,0 +1,48 @@
+<div class="list-container">
+  <h2>Fashion Website</h2>
+  <p *ngIf="errMessage" class="error-message">{{errMessage}}</p>
+
+  <!-- Tìm kiếm theo Style (yêu cầu trang 115) -->
+  <div class="filter-section">
+    <label><b>Tìm theo Style: </b></label>
+    <select [(ngModel)]="selectedStyle"
+            (change)="filterByStyle()"
+            class="style-select">
+      <option value="">-- Tất cả --</option>
+      <option *ngFor="let s of styles" [value]="s">{{s}}</option>
+    </select>
+  </div>
+
+  <!-- Nhóm Fashion theo từng Style (yêu cầu trang 115) -->
+  <div *ngFor="let s of styles">
+
+    <!-- Chỉ hiển thị nhóm này nếu đang xem tất cả hoặc đúng style được chọn -->
+    <ng-container *ngIf="selectedStyle === '' || selectedStyle === s">
+      <h3 class="style-heading">
+        {{ s }}
+      </h3>
+
+      <div class="fashion-grid">
+        <div *ngFor="let fashion of fashions | fashionFilter:s"
+             [routerLink]="['/fashion-detail', fashion._id]"
+             class="fashion-card">
+
+          <!-- Avatar là thumbnail (yêu cầu trang 115) -->
+          <img [src]="fashion.thumbnail"
+               width="160px" height="160px"
+               class="fashion-img"
+               [alt]="fashion.fashion_title"
+               onerror="this.src=''">
+
+          <p class="fashion-title">
+            {{fashion.fashion_title}}
+          </p>
+          <p class="fashion-style">
+            {{fashion.style}}
+          </p>
+        </div>
+      </div>
+    </ng-container>
+
+  </div>
+</div>

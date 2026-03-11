@@ -1,0 +1,59 @@
+<p>fashion-form works!</p>
+<h2>{{ isEditMode ? 'Chỉnh sửa Fashion' : 'Thêm mới Fashion' }}</h2>
+<p style="color:red">{{errMessage}}</p>
+
+<table cellpadding="8">
+  <tr>
+    <td><b>Fashion Title:</b></td>
+    <td>
+      <input type="text" name="fashion_title"
+             style="width:400px"
+             placeholder="Nhập tiêu đề fashion"
+             [(ngModel)]="fashion.fashion_title"/>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Style:</b></td>
+    <td>
+      <input type="text" name="style"
+             style="width:400px"
+             placeholder="VD: STREET STYLE"
+             [(ngModel)]="fashion.style"/>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><b>Fashion Detail:</b></td>
+    <td>
+      <!-- WYSIWYG Editor (yêu cầu trang 114) -->
+      <quill-editor [(ngModel)]="fashion.fashion_detail"
+                    name="fashion_detail"
+                    style="width:500px; display:block;">
+      </quill-editor>
+    </td>
+  </tr>
+  <tr>
+    <td><b>Thumbnail:</b></td>
+    <td>
+      <input type="file" name="thumbnail"
+             (change)="onFileSelected($event)">
+      <br>
+      <img *ngIf="fashion.thumbnail"
+           src="{{fashion.thumbnail}}"
+           width="120px" height="120px"
+           style="margin-top:8px; object-fit:cover;">
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <button (click)="saveFashion()"
+              style="padding:8px 20px; background:green; color:white;">
+        💾 {{ isEditMode ? 'Cập nhật' : 'Lưu mới' }}
+      </button>
+      &nbsp;
+      <button routerLink="/fashion-admin-list"
+              style="padding:8px 20px;">
+        ↩ Hủy
+      </button>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,27 @@
+/* Input focus effects */
+input:focus {
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Button hover effects */
+button:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2) !important;
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* Quill editor styling */
+::ng-deep .ql-container {
+  min-height: 200px;
+  font-size: 15px;
+}
+
+::ng-deep .ql-toolbar {
+  background: #f8f9fa;
+  border-bottom: 2px solid #e0e0e0 !important;
+}

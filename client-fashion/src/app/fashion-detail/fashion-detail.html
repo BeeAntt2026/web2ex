@@ -1,0 +1,32 @@
+<div class="detail-container">
+
+  <div *ngIf="fashion">
+    <h2>{{fashion.fashion_title}}</h2>
+
+    <p class="detail-meta">
+      Style: <b>{{fashion.style}}</b>
+      &nbsp;|&nbsp;
+      Ngày đăng: <b>{{fashion.created_date | date:'dd/MM/yyyy'}}</b>
+    </p>
+
+    <!-- Ảnh thumbnail (yêu cầu trang 115) -->
+    <img [src]="fashion.thumbnail"
+         class="detail-image"
+         [alt]="fashion.fashion_title"
+         onerror="this.src=''">
+
+    <!-- Render HTML từ WYSIWYG (yêu cầu trang 115) -->
+    <div class="detail-content"
+         [innerHTML]="fashion.fashion_detail">
+    </div>
+
+    <br>
+    <button (click)="goBack()" class="btn-back">
+      ← Quay lại
+    </button>
+  </div>
+
+  <p *ngIf="!fashion && !errMessage" class="loading">Đang tải...</p>
+  <p *ngIf="errMessage" class="error">{{errMessage}}</p>
+
+</div>

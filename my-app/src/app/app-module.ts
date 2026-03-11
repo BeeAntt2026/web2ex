@@ -28,6 +28,9 @@ import { FashionDetailComponent } from './fashion-detail/fashion-detail.componen
 import { Login } from './login/login';
 import { ShoppingCart } from './shopping-cart/shopping-cart';
 import { ProductList } from './product-list/product-list';
+import { FashionAdminList } from './fashion-admin-list/fashion-admin-list';
+import { FashionForm } from './fashion-form/fashion-form';
+import { QuillModule } from 'ngx-quill';
 @NgModule({
   declarations: [
     App,
@@ -54,14 +57,17 @@ import { ProductList } from './product-list/product-list';
     FashionDetailComponent,
     Login,
     ShoppingCart,
-    ProductList
+    ProductList,
+    FashionAdminList,
+    FashionForm
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    QuillModule.forRoot()
   ],
   providers: [
     provideBrowserGlobalErrorListeners()

@@ -10,32 +10,35 @@ import { FashionApiservice } from '../myservices/fashion-apiservice';
 })
 export class Fashion implements OnInit {
   fashions: any[] = [];
+  styles: string[] = [];
+  selectedStyle: string = '';
   errMessage: string = '';
-  cartMessage: string = '';
 
-  constructor(public _service: FashionApiservice, private _http: HttpClient) {}
+  constructor(public _service: FashionApiservice) {}
 
   ngOnInit(): void {
+    this.loadAll();
+  }
+
+  loadAll(): void {
     this._service.getFashions().subscribe({
-      next: (data) => { this.fashions = data; },
+      next: (data) => {
+        this.fashions = data;
+        // Lấy danh sách Style duy nhất cho dropdownlist
+        this.styles = [...new Set(data.map((f: any) => f.style))] as string[];
+      },
       error: (err) => { this.errMessage = err; }
     });
   }
 
-  addToCart(fashion: any): void {
-    const product = {
-      productId: fashion._id,
-      name: fashion.fashion_subject,
-      price: fashion.fashion_price || 0,
-      image: fashion.fashion_image,
-      quantity: 1
-    };
-    this._http.post<any>('/add-to-cart', product).subscribe({
-      next: (res) => {
-        this.cartMessage = res.message;
-        setTimeout(() => this.cartMessage = '', 2000);
-      },
-      error: (err) => { this.cartMessage = 'Error adding to cart'; }
-    });
+  filterByStyle(): void {
+    if (this.selectedStyle === '') {
+      this.loadAll();
+    } else {
+      this._service.getFashionsByStyle(this.selectedStyle).subscribe({
+        next: (data) => { this.fashions = data; },
+        error: (err) => { this.errMessage = err; }
+      });
+    }
   }
 }

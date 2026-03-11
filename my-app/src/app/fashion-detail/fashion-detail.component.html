@@ -1,34 +1,23 @@
-<h2>Fashion Detail</h2>
+<div *ngIf="fashion">
+  <h2>{{fashion.fashion_title}}</h2>
+  <p>Style: <b>{{fashion.style}}</b></p>
+  <p>Ngày tạo: {{fashion.created_date | date:'dd/MM/yyyy'}}</p>
 
-<p style="color: red;">{{errMessage}}</p>
+  <img src="{{fashion.thumbnail}}" width="300px" height="300px"
+       style="object-fit:cover; border-radius:8px;"
+       onerror="this.src=''">
 
-<div>
-  <label><strong>Fashion ID: </strong></label>
-  <input type="text" [(ngModel)]="fashionId" placeholder="Nhập Fashion ID" size="30">
-  <button (click)="searchFashion()">Search</button>
+  <!-- Render HTML từ WYSIWYG editor (yêu cầu trang 115) -->
+  <div style="margin-top:16px; line-height:1.6;"
+       [innerHTML]="fashion.fashion_detail">
+  </div>
+
+  <br>
+  <button (click)="goBack()"
+          style="padding:8px 16px;">← Quay lại</button>
 </div>
 
-<a routerLink="/fashion" class="back-link">← Back to Fashion List</a>
-
-<div *ngIf="fashion" style="margin-top: 16px;">
-  <table border="1" style="border-collapse: collapse;">
-    <tr>
-      <td><strong>Fashion Id:</strong></td>
-      <td>{{fashion._id}}</td>
-    </tr>
-    <tr>
-      <td><strong>Fashion Subject:</strong></td>
-      <td>{{fashion.fashion_subject}}</td>
-    </tr>
-    <tr>
-      <td><strong>Fashion Detail:</strong></td>
-      <td>{{fashion.fashion_detail}}</td>
-    </tr>
-    <tr>
-      <td><strong>Image:</strong></td>
-      <td>
-        <img src="{{fashion.fashion_image}}" width="150px" height="150px" alt="fashion image">
-      </td>
-    </tr>
-  </table>
+<div *ngIf="errMessage">
+  <p style="color:red">{{errMessage}}</p>
+  <button (click)="goBack()">← Quay lại</button>
 </div>

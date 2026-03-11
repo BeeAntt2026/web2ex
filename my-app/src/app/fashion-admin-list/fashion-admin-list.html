@@ -1,0 +1,32 @@
+<p>fashion-admin-list works!</p>
+<h2>Quản lý Fashion (Admin)</h2>
+<p style="color:red">{{errMessage}}</p>
+
+<button routerLink="/fashion-form">+ Thêm mới Fashion</button>
+
+<table border="1" cellpadding="8" style="width:100%; margin-top:10px; border-collapse:collapse;">
+  <tr style="background:#f0f0f0;">
+    <th>Thumbnail</th>
+    <th>Title</th>
+    <th>Style</th>
+    <th>Ngày tạo</th>
+    <th>Thao tác</th>
+  </tr>
+  <tbody>
+    <tr *ngFor="let fashion of fashions">
+      <td>
+        <img src="{{fashion.thumbnail}}" width="70px" height="70px"
+             onerror="this.src=''" style="object-fit:cover;">
+      </td>
+      <td>{{fashion.fashion_title}}</td>
+      <td>{{fashion.style}}</td>
+      <td>{{fashion.created_date | date:'dd/MM/yyyy'}}</td>
+      <td>
+        <button routerLink="/fashion/{{fashion._id}}">Chi tiết</button>
+        <button routerLink="/fashion-form/{{fashion._id}}">Sửa</button>
+        <button (click)="deleteFashion(fashion._id)"
+                style="color:white; background:red;">Xóa</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,86 @@
+<div style="background: white; border-radius: 12px; padding: 32px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); max-width: 900px; min-height: 400px;">
+  
+  <!-- Loading state -->
+  <div *ngIf="!fashion && !errMessage" style="text-align: center; padding: 60px 20px;">
+    <div style="font-size: 48px; margin-bottom: 16px;">⏳</div>
+    <p style="color: #666; font-size: 18px;">Đang tải dữ liệu...</p>
+  </div>
+
+  <!-- Error state -->
+  <div *ngIf="errMessage" style="color: #e74c3c; background: #fdeaea; padding: 16px; border-radius: 6px; border-left: 4px solid #e74c3c;">
+    <strong>Lỗi:</strong> {{errMessage}}
+  </div>
+
+  <!-- Fashion content -->
+  <div *ngIf="fashion && !errMessage">
+    <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 24px;">
+      <h2 style="margin: 0; color: #333; font-size: 32px; font-weight: 700;">
+        {{fashion.fashion_title || 'No title'}}
+      </h2>
+      <span style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+                   color: white; 
+                   padding: 8px 20px; 
+                   border-radius: 20px; 
+                   font-size: 14px; 
+                   font-weight: 600;">
+        {{fashion.style || 'N/A'}}
+      </span>
+    </div>
+    
+    <p style="color: #7f8c8d; font-size: 14px; margin-bottom: 24px;">
+      📅 Ngày tạo: <strong>{{fashion.created_date | date:'dd/MM/yyyy HH:mm'}}</strong>
+    </p>
+    
+    <div style="text-align: center; margin: 32px 0;">
+      <img [src]="fashion.thumbnail" 
+           alt="Fashion thumbnail"
+           style="max-width: 100%; 
+                  width: 500px;
+                  height: 500px;
+                  object-fit: cover; 
+                  border-radius: 16px; 
+                  box-shadow: 0 8px 24px rgba(0,0,0,0.15);"
+           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22500%22%3E%3Crect fill=%22%23ddd%22 width=%22500%22 height=%22500%22/%3E%3Ctext fill=%22%23999%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2224%22%3ENo Image%3C/text%3E%3C/svg%3E'">
+    </div>
+    
+    <div style="background: #f8f9fa; 
+                padding: 24px; 
+                border-radius: 12px; 
+                margin: 32px 0;
+                border-left: 4px solid #667eea;">
+      <h3 style="margin-top: 0; color: #333; font-size: 20px;">📝 Chi tiết Fashion</h3>
+      <div style="line-height: 1.8; color: #555;" [innerHTML]="fashion.fashion_detail"></div>
+    </div>
+    
+    <div style="display: flex; gap: 12px; margin-top: 32px;">
+      <a [routerLink]="['/fashion-admin-list']" 
+         style="display: inline-block;
+                padding: 14px 32px; 
+                background: #95a5a6;
+                color: white; 
+                text-decoration: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: all 0.3s;">
+        ← Quay lại danh sách
+      </a>
+      <a [routerLink]="['/fashion-form', fashion._id]"
+         style="display: inline-block;
+                padding: 14px 32px; 
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white; 
+                text-decoration: none;
+                border-radius: 8px;
+                font-size: 16px;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+                transition: all 0.3s;">
+        ✏️ Chỉnh sửa
+      </a>
+    </div>
+  </div>
+  
+</div>
